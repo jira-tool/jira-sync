@@ -8,6 +8,19 @@ export type SearchReults = {
     issues: [{
         key: string,
         id: string,
+        changelog: {
+            histories: {
+                id: string,
+                created: string,
+                items: {
+                    field: string,
+                    fieldtype: string,
+                    from: string,
+                    fromString: string,
+                    to: string,
+                    toString: string
+                }[]
+        }[]},
         fields: {
             summary: string,
             status: {
@@ -22,7 +35,6 @@ export type SearchReults = {
                 name: string
             }
         }
-    
     }];
 }
 
