@@ -1,0 +1,6 @@
+@startuml
+
+index.ts -> Search: Get(jql : string, startAt : number, maxResults : number)
+Search -> http_common: Get(url : string)
+
+@enduml
