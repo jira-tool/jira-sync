@@ -3,11 +3,13 @@
 @apipath=rest/api/3/search
 @ApiPathIssueFields=rest/api/3/field
 
+@ApiPathIssueTypes=rest/api/3/issuetype
+
 @jql=project = todo AND status = "To Do"
 @startAt=0
 @maxResults=10
 @fields=summary,description
-@expand=changelog
+@expand=changelog,names
 @request_path=?jql={{jql}}&startAt={{startAt}}&maxResults={{maxResults}}&fields={{fields}}&expand={{expand}}
 
 
@@ -19,5 +21,15 @@ Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
 
 ### フィールド一覧取得
 GET {{host}}{{ApiPathIssueFields}} HTTP/1.1
+content-type: application/json
+Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
+
+### 
+GET {{host}}/rest/api/3/fieldconfiguration HTTP/1.1
+content-type: application/json
+Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
+
+### 
+GET {{host}}/rest/api/3/field/search HTTP/1.1
 content-type: application/json
 Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}

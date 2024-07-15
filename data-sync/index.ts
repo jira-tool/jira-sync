@@ -15,18 +15,6 @@ const FEILD_TYPE_INDEX  = ['*all'];
     const jql = 'project = todo AND status = "To Do"';
 
     let results = Search.Get(jql, startAt, maxResults, fields);
-
-    let schema = ["id", "key"];
-        // id: pl.Int32
-        // key: 'str',
-        // summary: 'str',
-        // status: 'str',
-        // assignee: 'str',
-        // updated: 'date'
-    // };
-    // let df = pl.DataFrame();
-    // df.columns.push("id", "key");
-    // let df = pl.DataFrame();
     results.subscribe((tickets) => {
         let df = pl.DataFrame();
         df = df.withColumns(pl.Series("id", [], pl.Utf8));
@@ -39,27 +27,12 @@ const FEILD_TYPE_INDEX  = ['*all'];
         }
 
         for(let ticket of tickets.issues) {
-            
-            // // // dfの１行のデータの準備
-            // let new_row = {
-            //     "id": ticket.id, 
-            //     "key": ticket.key, 
-            //     "summary": ticket.fields.summary, 
-            //     "status": ticket.fields.status.name, 
-            //     // "assignee": ticket.fields.assignee.name, 
-            //     // "updated": ticket.fields.updated
-            // };
-            // let new_df = pl.DataFrame([new_row]);
-            // df.vstack({"id": ticket.id, "key": ticket.key});
-            // df.vstack(new_df);
-            // let new_df = pl.DataFrame([{"id":ticket.id, "key": ticket.key}]);
             let new_df = pl.DataFrame();
             new_df = new_df.withColumns(pl.Series("id", [ticket.id], pl.Utf8));
             new_df = new_df.withColumns(pl.Series("key", [ticket.key], pl.Utf8));
             
             df = df.vstack(new_df);
             
-
             // dataディレクトリにjsonファイルとして出力
             fs.writeFileSync(`./data/${ticket.id}.json`, JSON.stringify(ticket, null, 2));
 
@@ -75,8 +48,6 @@ const FEILD_TYPE_INDEX  = ['*all'];
         }
         console.log(df);
         df.writeParquet("tickets.parquet");
-
-        // console.log('results:', tickets);
     }
     );
 })();

@@ -24,22 +24,20 @@ const FEILD_TYPE_INDEX  = ['summary', 'status', 'assignee', 'updated'];
         let results = await firstValueFrom(Search.Get(jql, startAt, maxResults, fields));
         if (!results) {
             console.error('Error fetching results');
-            isLoop = false;
             return;
         }
         console.log(results);
 
         if (!results.issues) {
             console.log('No tickets found');
-            isLoop = false;
             return;
         }
 
         if (results.issues.length < maxResults) {
             console.log('All tickets fetched');
-            isLoop = false;
             return;
         }
+
         for(let ticket of results.issues) {
             // チケットごとにファイルに書き込む
             const filePath = path.join(__dirname, `data/${ticket.key}.json`);
@@ -47,13 +45,8 @@ const FEILD_TYPE_INDEX  = ['summary', 'status', 'assignee', 'updated'];
             
             console.log('ticket:', ticket.key, ticket.fields.summary, ticket.fields.updated);
         }
-        isReady = true;
         startAt += maxResults;
         console.log('startAt:', startAt);
         await lastValueFrom(of(null).pipe(delay(2000))); // 1秒待機
     }
-    
-
-
-
 })();
