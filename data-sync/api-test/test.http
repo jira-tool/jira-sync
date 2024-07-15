@@ -33,3 +33,8 @@ Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
 GET {{host}}/rest/api/3/field/search HTTP/1.1
 content-type: application/json
 Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
+
+### 
+GET {{host}}/rest/api/3/project HTTP/1.1
+content-type: application/json
+Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
