@@ -1,0 +1,20 @@
+
+@host=https://hostname.atlassian.net/
+@apipath=rest/api/3/search
+
+@jql=project = todo AND status = "To Do"
+@startAt=0
+@maxResults=10
+@fields=summary,description
+@expand=changelog
+@request_path=?jql={{jql}}&startAt={{startAt}}&maxResults={{maxResults}}&fields={{fields}}&expand={{expand}}
+@JIRA_USERNAME = 
+@JIRA_API_TOKEN = 
+
+
+### JIRAデータの取得
+GET {{host}}{{apipath}}{{request_path}} HTTP/1.1
+content-type: application/json
+Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
+
+
