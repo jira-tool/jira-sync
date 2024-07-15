@@ -20,6 +20,7 @@ Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
 
 
 ### フィールド一覧取得
+# @name field_list
 GET {{host}}{{ApiPathIssueFields}} HTTP/1.1
 content-type: application/json
 Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
