@@ -1,4 +1,4 @@
-import { JIRA_API_ENDPOINT, JIRA_BASE_URL } from "../config";
+import { JIRA_API_ENDPOINT, JIRA_BASE_URL } from "../config/config";
 import { Get } from "./http_common";
 
 const JIRA_API_ENDPOINT_FIELD = '/rest/api/3/field';

@@ -1,4 +1,4 @@
-import { JIRA_BASE_URL, JIRA_USERNAME, JIRA_API_TOKEN } from './config';
+import { JIRA_BASE_URL, JIRA_USERNAME, JIRA_API_TOKEN } from './config/config';
 
 const JIRA_API_ENDPOINT = '/rest/api/3/issue';
 

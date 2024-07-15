@@ -1,4 +1,4 @@
-import { JIRA_BASE_URL, JIRA_API_ENDPOINT } from '../config';
+import { JIRA_BASE_URL, JIRA_API_ENDPOINT } from '../config/config';
 import { Get } from './http_common';
 
 export const UPDATE_FEILD_TYPE  = ['updated'];

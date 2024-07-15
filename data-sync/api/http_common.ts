@@ -1,4 +1,4 @@
-import { JIRA_API_TOKEN, JIRA_USERNAME } from '../config';
+import { JIRA_API_TOKEN, JIRA_USERNAME } from '../config/config';
 import { Observable, of, from } from 'rxjs';
 
 const credentials = Buffer.from(`${JIRA_USERNAME}:${JIRA_API_TOKEN}`).toString('base64');

@@ -3,14 +3,14 @@ import { Search } from './api/search';
 import fs from 'fs';
 import path from 'path';
 import { delay, firstValueFrom, lastValueFrom, of } from 'rxjs';
-import { PROJECT_NAME } from './settings';
+import { PROJECT_NAME } from './config/settings';
 
 const FEILD_TYPE_INDEX  = ['summary', 'status', 'assignee', 'updated'];
 
 (async () => {
     const maxResults = 10;
     let startAt = 0;
-    const fields = FEILD_TYPE_INDEX;
+    const fields = ['*all'];
     const jql = 'project = todo AND status = "To Do"';
 
     // jqlで指定した条件に一致するチケットを取得。maxResultsを超える場合は、複数回に分けて取得する
