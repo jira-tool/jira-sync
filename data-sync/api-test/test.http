@@ -1,6 +1,7 @@
 
-@host=https://hostname.atlassian.net/
+@host=https://kasamatsu.atlassian.net/
 @apipath=rest/api/3/search
+@ApiPathIssueFields=rest/api/3/field
 
 @jql=project = todo AND status = "To Do"
 @startAt=0
@@ -8,8 +9,6 @@
 @fields=summary,description
 @expand=changelog
 @request_path=?jql={{jql}}&startAt={{startAt}}&maxResults={{maxResults}}&fields={{fields}}&expand={{expand}}
-@JIRA_USERNAME = 
-@JIRA_API_TOKEN = 
 
 
 ### JIRAデータの取得
@@ -18,3 +17,7 @@ content-type: application/json
 Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
 
 
+### フィールド一覧取得
+GET {{host}}{{ApiPathIssueFields}} HTTP/1.1
+content-type: application/json
+Authorization: Basic {{JIRA_USERNAME}}:{{JIRA_API_TOKEN}}
