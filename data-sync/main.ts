@@ -1,6 +1,7 @@
-import pl, { Utf8 } from 'nodejs-polars';
 import fs from 'fs';
 import path from 'path';
+import pl, { Utf8 } from 'nodejs-polars';
+import duckdb from 'duckdb';
 
 const dirPath = './data/todo/';
 const files = fs.readdirSync(dirPath);
@@ -89,10 +90,15 @@ for (const file of jsonFiles) {
         df = df.vstack(dfHistoryRow);
     }
 }
-console.log(df);
+// console.log(df);
 
 df.writeParquet("export/foo.parquet", { compression: 'snappy' });
 
 
 // CSVファイル出力する、デリミタはタブで、ヘッダーを出力する、文字コードはUTF-8
 df.writeCSV("export/foo.csv", { includeBom: true, includeHeader: true, sep: ',' });
+const db = new duckdb.Database('example.duckdb');
+const connection = db.connect();
+connection.exec("CREATE TABLE ISSUES AS SELECT * FROM read_parquet('foo.parquet')");
+connection.close();
+db.close();
