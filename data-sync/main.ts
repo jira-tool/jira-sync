@@ -91,8 +91,8 @@ for (const file of jsonFiles) {
 }
 console.log(df);
 
-df.writeParquet("foo.parquet", { compression: 'snappy' });
+df.writeParquet("export/foo.parquet", { compression: 'snappy' });
 
 
 // CSVファイル出力する、デリミタはタブで、ヘッダーを出力する、文字コードはUTF-8
-df.writeCSV("foo.csv", { includeBom: true, includeHeader: true, sep: ',' });
+df.writeCSV("export/foo.csv", { includeBom: true, includeHeader: true, sep: ',' });
